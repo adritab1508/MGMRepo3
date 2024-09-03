@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lakshmi Akka's Perspective</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('../images/anikatable.jpg') no-repeat center center/cover; /* Background image */
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            right: -100%; /* Hidden offscreen initially */
+            width: 50%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+            transition: right 1s ease;
+        }
+
+        .overlay-buttons {
+            text-align: center;
+        }
+
+        .overlay-buttons button {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: transparent;
+            color: #fff;
+            border: 1px solid white;
+            width: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s ease;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .overlay-buttons button:hover {
+            background-color: maroon;
+            color: white;
+        }
+
+        /* Details windows */
+        .details {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 900px;
+            height: 500px;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: none; /* Hidden initially */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            z-index: 10;
+            padding: 20px;
+        }
+
+        .exitbutton {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            width: 30px;
+            height: 30px;
+            background-color: maroon;
+            color: white;
+            font-weight: bold;
+            border: 2px solid black;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .exitbutton:hover {
+            transform: scale(1.1);
+        }
+
+        .itemimg {
+    height: 100%;
+    width: 45%; /* Ensure the image container takes up the full width */
+    border-radius: 10px;
+    overflow: hidden; /* Hide any overflow for rounded corners */
+}
+
+.itemimg img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; /* Ensures the image covers the entire container */
+    border-radius: 10px; /* Match the border-radius of the container */
+}
+
+.itemimg video {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; /* Ensures the video covers the entire container */
+    border-radius: 10px; /* Match the border-radius of the container */
+}
+
+        .itemdet {
+            width: 45%;
+    float: right;
+    padding: 20px;
+    overflow-y: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: black;
+    display: flex;
+    align-items: center; /* Centers content vertically */
+    justify-content: center; /* Centers content horizontally if needed */
+    text-align: justify;
+        }
+
+        .text{
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay">
+        <div class="overlay-buttons">
+            <p>Pick an Object</p>
+            <button id="btn-a">The Book</button><br>
+            <button id="btn-b">The Bracelet</button><br>
+            <button id="btn-c">The Glass</button><br><br>
+            <button onclick="window.location.href='pov2.html'">Move On</button>
+        </div>
+    </div>
+
+    <!-- Details Windows -->
+    <div id="winA" class="details">
+        <button class="exitbutton" id="ax">x</button>
+        <div class="itemimg">
+            <img src="../images/book.jpg" alt="Lakshmi Akka">
+        </div>
+        <div class="itemdet">
+            <span class="text">
+                <p style="font-size: 20px;">Code Laws in India</p>
+                <p>Anika was alive for maybe 2 hours after finding out about the code violations of the hostel building.</p>
+                <p>Looks like she made the most of that time.</p>
+            </span>
+        </div>
+    </div>
+
+    <div id="winB" class="details">
+        <button class="exitbutton" id="bx">x</button>
+        <div class="itemimg">
+            <img src="../images/bracelet.jpg" alt="Ruchi">
+        </div>
+        <div class="itemdet">
+            <span class="text">
+                <p style="font-size: 20px;">The Bracelet</p>
+                <p>Ruchi owned an identical bracelet actually.</p>
+                <p>And Vicky was the one who gave her that...</p>
+            </span>
+        </div>
+    </div>
+
+    <div id="winC" class="details">
+        <button class="exitbutton" id="cx">x</button>
+        <div class="itemimg">
+            
+                <img src="../images/glass.jpg" alt="Ruchi">
+            
+        </div>
+        <div class="itemdet">
+            <span class="text">
+                <p style="font-size: 20px;">The Glass</p>
+                <p>A steel glass still slightly wet at the rim.</p>
+                <p>A peculiar choice of utensil for Anika. Ruchi did not know she owned any non-ceramic vessels.</p>
+            </span>
+        </div>
+    </div>
+
+    <script>
+        // Slide in overlay after 3 seconds
+        setTimeout(() => {
+            document.getElementById('overlay').style.right = '0';
+        }, 3000);
+
+        // Event listeners for buttons
+        document.getElementById('btn-a').addEventListener('click', () => {
+            document.getElementById('winA').style.display = 'inline-flex';
+        });
+
+        document.getElementById('btn-b').addEventListener('click', () => {
+            document.getElementById('winB').style.display = 'inline-flex';
+        });
+
+        document.getElementById('btn-c').addEventListener('click', () => {
+            document.getElementById('winC').style.display = 'inline-flex';
+        });
+
+        // Event listeners for exit buttons
+        document.getElementById('ax').addEventListener('click', () => {
+            document.getElementById('winA').style.display = 'none';
+        });
+
+        document.getElementById('bx').addEventListener('click', () => {
+            document.getElementById('winB').style.display = 'none';
+        });
+
+        document.getElementById('cx').addEventListener('click', () => {
+            document.getElementById('winC').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

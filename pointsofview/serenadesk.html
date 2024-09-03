@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serena's Perspective</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('../images/serenadesk.jpg') no-repeat center center/cover; /* Background image */
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            right: -100%; /* Hidden offscreen initially */
+            width: 50%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+            transition: right 1s ease;
+        }
+
+        .overlay-buttons {
+            text-align: center;
+        }
+
+        .overlay-buttons button {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: transparent;
+            color: #fff;
+            border: 1px solid white;
+            width: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s ease;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .overlay-buttons button:hover {
+            background-color: maroon;
+            color: white;
+        }
+
+        /* Details windows */
+        .details {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 900px;
+            height: 500px;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: none; /* Hidden initially */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            z-index: 10;
+            padding: 20px;
+        }
+
+        .exitbutton {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            width: 30px;
+            height: 30px;
+            background-color: maroon;
+            color: white;
+            font-weight: bold;
+            border: 2px solid black;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .exitbutton:hover {
+            transform: scale(1.1);
+        }
+
+        .itemimg {
+    height: 100%;
+    width: 45%; /* Ensure the image container takes up the full width */
+    border-radius: 10px;
+    overflow: hidden; /* Hide any overflow for rounded corners */
+}
+
+.itemimg img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; /* Ensures the image covers the entire container */
+    border-radius: 10px; /* Match the border-radius of the container */
+}
+
+.itemimg video {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; /* Ensures the video covers the entire container */
+    border-radius: 10px; /* Match the border-radius of the container */
+}
+
+        .itemdet {
+            width: 45%;
+    float: right;
+    padding: 20px;
+    overflow-y: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: black;
+    display: flex;
+    align-items: center; /* Centers content vertically */
+    justify-content: center; /* Centers content horizontally if needed */
+    text-align: justify;
+        }
+
+        .text{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay">
+        <div class="overlay-buttons">
+            <button id="btn-a">Check the Register</button><br>
+            <button id="btn-b">Check the Mail</button><br>
+            <button id="btn-c">Check Voice Mails</button><br><br>
+            <button onclick="window.location.href='https://adritab1508.github.io/MGMRepo4/'">Move On</button>
+        </div>
+    </div>
+
+    <!-- Details Windows -->
+    <div id="winA" class="details">
+        <button class="exitbutton" id="ax">x</button>
+        <div class="itemimg">
+            <img src="../images/register.jpg" alt="Lakshmi Akka">
+        </div>
+        <div class="itemdet">
+            <span class="text">
+            <p style="font-size: 30px;">The Register</p>
+            <p> Serena decides to see if there is something peculiar about the in-times and out-times of everyone involved.</p>
+            <p>Swati returned that night at 8:00 PM. Probably from work.</p>
+            <p>Ruchi came back from the library at 6:00 PM and was in her room until the power outtage, presumably.</p>
+            <p>And Lakshmi Akka had left for an hour in the morning. Serena had no idea why.</p>
+        </span>
+        </div>
+    </div>
+
+    <div id="winB" class="details">
+        <button class="exitbutton" id="bx">x</button>
+        <div class="itemimg">
+            <img src="../images/postcard.jpg" alt="Ruchi">
+        </div>
+        <div class="itemdet">
+            <span class="text">
+                <p style="font-size: 30px;">The Mail</p>
+                <p>In the mail is a postcard from Ruchi's father.</p>
+                <p style="font-family: Monotype Corsiva;">"(...)It is time for you to grow up and settle down. If you do not come back within five days, we will stop paying your college tuition from the next year. Do not complain before you have even met the man. He is from a very respectable family who used to work at my office when you were young (...)"</p>
+            </span>
+        </div>
+    </div>
+
+    <div id="winC" class="details">
+        <button class="exitbutton" id="cx">x</button>
+        <div class="itemimg">
+            <video controls>
+                <source src="../videos/voicemail.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="itemdet">
+            <span class="text">
+                <p style="font-size: 30px;">The Voice Mail</p>
+                <p>Sometimes, when she cannot quite wrap her head around Vicky's death and how she feels about it, Serena listens to the last voice message he sent on the hostel landline. A message to her, for some reason, even though she was not supposed to be there tonight had it not been for his death.</p>
+                <p>But when she played the stored messages this time, she came across one that she had not heard before...</p>
+            </span>
+        </div>
+    </div>
+
+    <script>
+        // Slide in overlay after 3 seconds
+        setTimeout(() => {
+            document.getElementById('overlay').style.right = '0';
+        }, 3000);
+
+        // Event listeners for buttons
+        document.getElementById('btn-a').addEventListener('click', () => {
+            document.getElementById('winA').style.display = 'inline-flex';
+        });
+
+        document.getElementById('btn-b').addEventListener('click', () => {
+            document.getElementById('winB').style.display = 'inline-flex';
+        });
+
+        document.getElementById('btn-c').addEventListener('click', () => {
+            document.getElementById('winC').style.display = 'inline-flex';
+        });
+
+        // Event listeners for exit buttons
+        document.getElementById('ax').addEventListener('click', () => {
+            document.getElementById('winA').style.display = 'none';
+        });
+
+        document.getElementById('bx').addEventListener('click', () => {
+            document.getElementById('winB').style.display = 'none';
+        });
+
+        document.getElementById('cx').addEventListener('click', () => {
+            document.getElementById('winC').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
